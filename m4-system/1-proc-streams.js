@@ -1,13 +1,20 @@
 // A slight variation of the sample found here:
 // http://nodejs.org/api/process.html#process_process_stdin
 
-process.stdin.resume();
-process.stdin.setEncoding('utf8');
+(function () {
+    'use strict';
 
-process.stdin.on('data', function (chunk) {
-  process.stdout.write('Data! -> ' + chunk);
-});
+    process.stdin.setEncoding('utf8');
 
-process.stdin.on('end', function () {
-  process.stderr.write('End!\n');
-});
+    process.stdin.on('readable', function () {
+        var chunk = process.stdin.read();
+        if (chunk !== null) {
+            process.stdout.write('Data! -> ' + chunk);
+        }
+    });
+
+    process.stdin.on('end', function () {
+        process.stdout.write('End!\n');
+    });
+
+}());

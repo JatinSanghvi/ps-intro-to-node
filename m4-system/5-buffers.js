@@ -1,9 +1,11 @@
-var b = new Buffer('Hello');
+(function () {
+    'use strict';
 
-console.log(b.toString());
+    var b = new Buffer('Hello');
+    console.log(b.toString());
+    console.log(b.toString('base64'));
 
-console.log(b.toString('base64'));
+    console.log(new Buffer('Hello').toString('base64'));
 
-var v = new Buffer('World').toString('base64');
-
-console.log(b.toString('utf-8',0,2));
+    console.log(b.toString('utf-8', 0, 2));
+}());
