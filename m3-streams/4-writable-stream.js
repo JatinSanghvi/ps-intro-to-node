@@ -1,4 +1,8 @@
-console.log("stdout is writable? " + process.stdout.writable);
+(function () {
+    'use strict';
 
-process.stdout.write("Hello");
-process.stdout.write("World");
+    console.log("stdout is writable? " + process.stdout.writable);
+
+    process.stdout.write("Hello");
+    process.stdout.write("World");
+}());

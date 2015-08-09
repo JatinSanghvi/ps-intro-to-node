@@ -1,15 +1,19 @@
-var Resource = require('./resource');
+(function () {
+    'using strict';
 
-var r = new Resource(7);
+    var Resource = require('./resource');
 
-r.on('start', function() {
-    console.log("I've started!");
-});
+    var r = new Resource(7);
 
-r.on('data', function(d) {
-    console.log("   I received data -> " + d);
-});
+    r.on('start', function () {
+        console.log("I've started!");
+    });
 
-r.on('end', function(t) {
-    console.log("I'm done, with " + t + " data events.");
-});
+    r.on('data', function (d) {
+        console.log("   I received data -> " + d);
+    });
+
+    r.on('end', function (t) {
+        console.log("I'm done, with " + t + " data events.");
+    });
+}());

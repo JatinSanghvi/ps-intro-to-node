@@ -1,27 +1,34 @@
 // For use with 2-ext-eventemitter.js
 
-var util = require('util');
-var EventEmitter = require('events').EventEmitter;
+(function () {
+    'using strict';
 
-function Resource (m) {
-    
-    var maxEvents = m;    
-    var self = this;
-    
-    process.nextTick(function() {
-        var count = 0;
-        self.emit('start');
-        var t = setInterval(function () {
-            self.emit('data', ++count);
-            if (count === maxEvents) {
-                self.emit('end', count);
-                clearInterval(t);
-            }
-        }, 10);
-    });
-    
-};
+    var util = require('util');
+    var EventEmitter = require('events').EventEmitter;
 
-util.inherits(Resource, EventEmitter);
+    var Resource = function (m) {
 
-module.exports = Resource;
+        var maxEvents = m;
+        var self = this;
+
+        process.nextTick(function () {
+            self.emit('start');
+
+            var count = 0;
+            var t = setInterval(function () {
+                count += 1;
+                self.emit('data', count);
+
+                if (count === maxEvents) {
+                    self.emit('end', count);
+                    clearInterval(t);
+                }
+            }, 10);
+
+        });
+    };
+
+    util.inherits(Resource, EventEmitter);
+
+    module.exports = Resource;
+}());

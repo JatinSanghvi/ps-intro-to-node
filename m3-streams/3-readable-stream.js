@@ -1,11 +1,15 @@
-var request = require('request');
+(function () {
+    'using strict';
 
-var s = request('http://www.pluralsight.com/');
+    var request = require('request');
 
-s.on('data', function(chunk) {
-    console.log(">>>Data>>> " + chunk);
-});
+    var s = request('http://www.pluralsight.com/');
 
-s.on('end', function() {
-    console.log(">>>Done!>>>");
-});
+    s.on('data', function (chunk) {
+        console.log('>>>Data>>> ' + chunk);
+    });
+
+    s.on('end', function () {
+        console.log('>>>Done!>>>');
+    });
+}());
