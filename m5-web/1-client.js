@@ -1,42 +1,46 @@
-var http = require('http');
+(function () {
+    'use strict';
 
-var options = {
-    host: 'www.google.com',
-    port: 80,
-    path: '/',
-    method: 'GET'
-};
+    var https = require('https');
 
-console.log("Going to make request...");
+    console.log("Going to make request...");
 
-// Version 1:  http.request with string URL
+    // // Version 1:  http.request with string URL
 
-var req = http.request('https://www.google.com/', function(response) {
-    console.log(response.statusCode);
-    response.pipe(process.stdout);
-});
+    // var req = https.request('https://www.google.com/', function (response) {
+    //     console.log(response.statusCode);
+    //     response.pipe(process.stdout);
+    // });
 
-req.end();
+    // req.end();
 
-// Version 2:  http.request with options object
+    // // Version 2:  http.request with options object
 
-// var req = http.request(options, function(response) {
-//     console.log(response.statusCode);
-//     response.pipe(process.stdout);
-// });
+    // var options = {
+    //     host: 'encrypted.google.com',
+    //     port: 443,
+    //     path: '/',
+    //     method: 'GET'
+    // };
 
-// req.end();
+    // req = https.request(options, function (response) {
+    //     console.log(response.statusCode);
+    //     response.pipe(process.stdout);
+    // });
 
-// Version 3:  http.get()
+    // req.end();
 
-// http.get('https://www.google.com/', function(response) {
-//     console.log(response.statusCode);
-//     response.pipe(process.stdout);
-// });
+    // // Version 3:  http.get()
 
-// Version 4:  pluralsight.com, notice does not follow redirects
+    // https.get('https://www.google.com/', function (response) {
+    //     console.log(response.statusCode);
+    //     response.pipe(process.stdout);
+    // });
 
-// http.get('https://www.pluralsight.com/', function(response) {
-//     console.log(response.statusCode);
-//     response.pipe(process.stdout);
-// });
+    // Version 4:  pluralsight.com, notice does not follow redirects
+
+    https.get('https://www.pluralsight.com/', function (response) {
+        console.log(response.statusCode);
+        response.pipe(process.stdout);
+    });
+}());
