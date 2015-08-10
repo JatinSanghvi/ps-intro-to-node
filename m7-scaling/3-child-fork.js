@@ -1,10 +1,18 @@
-var fork = require('child_process').fork;
+(function () {
+    'use strict';
 
-var child = fork(__dirname + '/honorstudent.js');
+    var fork = require('child_process').fork;
+    var child = fork(__dirname + '/honorstudent.js');
 
-child.on('message', function(m) {
-    console.log('The answer is: ', m.answer);
-    child.send({cmd: 'done'});
-});
+    child.on('message', function (m) {
+        console.log('The answer is: ', m.answer);
+        child.send({
+            cmd: 'done'
+        });
+    });
 
-child.send({cmd: 'double', number: 20});
+    child.send({
+        cmd: 'double',
+        number: 20
+    });
+}());

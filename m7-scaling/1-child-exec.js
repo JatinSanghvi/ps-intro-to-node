@@ -1,11 +1,15 @@
-var exec = require('child_process').exec;
+(function () {
+    'use strict';
 
-var child = exec('uptime | cut -d "," -f 1', function(err, stdout, stderr) {
-    if (err) {
-        console.log('Error: ' + stderr);
-    } else {
-        console.log('Output is: ' + stdout);
-    }
-});
+    var exec = require('child_process').exec;
 
-console.log("PID is " + child.pid);
+    var child = exec('uptime | cut -d "," -f 1', function (err, stdout, stderr) {
+        if (err) {
+            console.log('Error: ' + stderr);
+        } else {
+            console.log('Output is: ' + stdout);
+        }
+    });
+
+    console.log("PID is " + child.pid);
+}());
